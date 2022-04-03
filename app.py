@@ -3,12 +3,15 @@
 
 from fastapi import FastAPI
 from utils.log_events import LogEvents
+from db.redis import RedisProxy
+from config import Config
 import api
 
 
 class App(FastAPI):
-    def __init__(self, config):
+    def __init__(self, config: Config):
         super().__init__()
+        self._cfg = config
         LogEvents.info.init()
 
         self.add_event_handler("startup", self.startup)

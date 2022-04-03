@@ -8,6 +8,11 @@ class AppConfig:
     port: str
 
 @dataclass
+class RedisConfig:
+    host: str
+    port: str
+
+@dataclass
 class Config:
     app: AppConfig
 
@@ -20,10 +25,15 @@ def get_config(path: str = "config.ini"):
     print(config)
 
     cfg_app = config["app"]
+    cfg_redis = config["redis"]
 
     return Config(
         app=AppConfig(
             host=cfg_app['host'],
             port=int(cfg_app['port'])
+        ),
+        redis=RedisConfig(
+            host=cfg_redis["host"],
+            port=int(cfg_redis["port"])
         )
     )
