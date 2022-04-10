@@ -1,0 +1,18 @@
+version: "3.4"
+services:
+  db:
+    image: 'mongo'
+    container_name: 'beer_rule_mongo'
+    environment:
+      - MONGO_INITDB_DATABASE=beer_rule
+      - MONGO_INITDB_ROOT_USERNAME=test
+      - MONGO_INITDB_ROOT_PASSWORD=test
+    ports:
+      - '27017:27017'
+    network_mode: "host" 
+  beer_rule:
+    image: 'beer_rule:latest'
+    container_name: 'beer_rule'
+    ports:
+      - '6700:6700'
+    network_mode: "host" 

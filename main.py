@@ -9,7 +9,6 @@ if __name__ == '__main__':
 
     app: App = App(cfg)
 
-    print(cfg.app.port)
     uvicorn.run(
         app=app,
         host=cfg.app.host,
